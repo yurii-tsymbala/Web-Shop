@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: "Nunito";
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-image: url("/assets/background.jpeg");
+  background-size: cover;
+}
