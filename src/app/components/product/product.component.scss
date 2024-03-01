@@ -1,0 +1,50 @@
+$greenCustom: #8dc73f;
+$greenText: #7ab22d;
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 16rem;
+    height: 16rem;
+    margin: 1rem;
+    color: $greenText;
+    background-color: white;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        transform: scale(1.03);
+        filter: brightness(0.9);
+    }
+}
+
+img {
+    width: 100%;
+    height: 12rem;
+}
+
+.textContainer {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    text-align: center;
+}
+
+.backgroundImg {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 12rem;
+}
+
+
+

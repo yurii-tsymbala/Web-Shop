@@ -1,12 +1,23 @@
 <header></header>
 <div class="main-container">
+
     <div class="sort-container">
         <sort
             *ngFor="let sort of sorts; let i = index"
             [sort]="sort"
             (updateProducts)="onSortClick($event)"
             [ngClass]="{ selected: i === selectedIndex }"
-        ></sort>
+        ></sort>  
     </div>
+
+    <div class="product-container">
+        <product
+        *ngFor="let product of products$ | async"
+        [product]="product"
+        ></product>
+    </div>
+
+
+
 </div>
 <footer></footer>

@@ -1,1 +1,4 @@
-<p>product works!</p>
+<div class="backgroundImg"
+    [ngStyle]="{ 'background-image': 'url(' + product.image_link + ')' }"
+></div>
+<div class="textContainer">{{ product.name.toUpperCase() }}</div>
