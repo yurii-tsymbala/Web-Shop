@@ -3,6 +3,6 @@ export class Product {
         public id: number, 
         public brand: string,
         public name: string,
-        public image_link: string
+        public api_featured_image: string
         ) {}
 }

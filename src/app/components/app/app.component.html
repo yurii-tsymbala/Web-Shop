@@ -1,7 +1,8 @@
 <header></header>
 <div class="main-container">
 
-    <div class="sort-container">
+    <div class="sort-container"
+         *ngIf="((products$ | async)?.length || 0) > 0">
         <sort
             *ngFor="let sort of sorts; let i = index"
             [sort]="sort"

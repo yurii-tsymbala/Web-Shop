@@ -6,8 +6,9 @@ import { SortComponent } from "../sort/sort.component";
 import { Sort } from "../../models/Sort";
 import { CommonModule } from "@angular/common";
 import { ProductComponent } from "../product/product.component";
-import { Observable } from "rxjs";
+import { Observable, take } from "rxjs";
 import { Product } from "../../models/Product";
+import { ProductService } from "../../services/product.service";
 
 @Component({
     selector: "app-root",
@@ -24,17 +25,28 @@ import { Product } from "../../models/Product";
     styleUrl: "./app.component.scss",
 })
 export class AppComponent implements OnInit {
-    products$ = new Observable<Product[]>();
+    products$!: Observable<Product[]>;
     sorts = this.getSorts();
     selectedIndex: number = 0;
 
+    constructor(private productService: ProductService) {}
+
     ngOnInit(): void {
-      
+        this.fetchProducts();
+        this.observeProducts();
     }
 
-    onSortClick(sort: Sort) {
+    onSortClick(sort: Sort): void {
         this.selectedIndex = sort.id;
         // update products by method from service
+    }
+
+    private fetchProducts(): void {
+        this.productService.getProducts().pipe(take(1)).subscribe();
+    }
+
+    private observeProducts(): void {
+        this.products$ = this.productService.updatedProducts$;
     }
 
     private getSorts(): Sort[] {
