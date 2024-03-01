@@ -1,3 +1,12 @@
 <header></header>
-
+<div class="main-container">
+    <div class="sort-container">
+        <sort
+            *ngFor="let sort of sorts; let i = index"
+            [sort]="sort"
+            (updateProducts)="onSortClick($event)"
+            [ngClass]="{ selected: i === selectedIndex }"
+        ></sort>
+    </div>
+</div>
 <footer></footer>
