@@ -14,4 +14,9 @@
         <cart *ngFor="let cartItem of cartItems$ | async" [cartItem]="cartItem">
         </cart>
     </div>
+
+    <div class="price-container">
+        <div class="header-title">SUBTOTAL</div>
+        <div class="header-title" *ngIf="cartItemsSubtotal$ | async; let subtotal">{{subtotal}}$</div>
+    </div>
 </div>

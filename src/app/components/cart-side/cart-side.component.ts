@@ -41,6 +41,16 @@ export class CartSideComponent implements OnInit {
         );
     }
 
+    get cartItemsSubtotal$(): Observable<number> {
+        return this.productService.cartProducts$.pipe(
+            map((cartItems) =>
+                [...cartItems]
+                    .map((cartItem) => cartItem.product.price * cartItem.counter)
+                    .reduce((acc, item) => { return acc += item }, 0)
+            )
+        );
+    }
+
     onCloseClick(): void {
         this.isHiding = true;
         setTimeout(() => {

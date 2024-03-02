@@ -82,6 +82,18 @@
     gap: 0.7rem;
 }
 
+.price-container {
+    display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4rem;
+    border-top: 0.5px solid black;
+    background-color: red;
+}
+
 @keyframes fade_in {
     0% {
         opacity: 0;
