@@ -1,6 +1,9 @@
 <button class="main-btn" routerLink="/">
     <img class="main-icon" src="assets/home_icon.png">
 </button> 
+<div *ngIf="cartItemsCount$ | async; let cartItems">
+    YOUR CART - {{ cartItems }} items
+</div>
 <button class="main-btn" routerLink="/shopcart">
     <img class="main-icon" src="assets/cart_icon.png">
 </button>
