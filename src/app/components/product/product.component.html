@@ -1,4 +1,27 @@
-<div class="backgroundImg"
-    [ngStyle]="{ 'background-image': 'url(' + 'http:' + product.api_featured_image + ')' }"
+<div
+    class="backgroundImg"
+    [ngStyle]="{
+        'background-image': 'url(' + 'http:' + product.api_featured_image + ')'
+    }"
 ></div>
-<div class="textContainer">{{ product.name.toUpperCase() }}</div>
+
+<div class="text-container">
+    <div class="info-container">
+
+        <div class="product-name">
+            {{ product.name }}
+        </div>
+
+        <div class="product-brand">
+            {{ product.brand.toUpperCase() }}
+        </div>
+    </div>
+
+    <div class="product-price">
+        {{ formattedPrice.toUpperCase() }}
+    </div>
+</div>
+
+<button class="product-btn" (click)="addToCart.emit(product)">
+    ADD TO CART
+</button>

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Product } from "../../models/Product";
 import { CommonModule } from "@angular/common";
 
@@ -11,4 +11,9 @@ import { CommonModule } from "@angular/common";
 })
 export class ProductComponent {
     @Input() product!: Product;
+    @Output() addToCart = new EventEmitter<Product>();
+
+    get formattedPrice(): string {
+        return `${this.product.price}${this.product.price_sign} ${this.product.currency}` 
+    }
 }

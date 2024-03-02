@@ -6,7 +6,7 @@ import { SortComponent } from "../sort/sort.component";
 import { Sort } from "../../models/Sort";
 import { CommonModule } from "@angular/common";
 import { ProductComponent } from "../product/product.component";
-import { Observable, take } from "rxjs";
+import { Observable, map, take, tap } from "rxjs";
 import { Product } from "../../models/Product";
 import { ProductService } from "../../services/product.service";
 
@@ -36,9 +36,31 @@ export class AppComponent implements OnInit {
         this.observeProducts();
     }
 
+    onProductClick(product: Product) {
+        console.log(product);
+    }
+
     onSortClick(sort: Sort): void {
         this.selectedIndex = sort.id;
-        // update products by method from service
+
+        switch (sort.id) {
+            case 0:
+                this.products$ = this.productService.updatedProducts$;
+                break;
+            case 1:
+                this.products$ = this.productService.updatedProducts$.pipe(
+                    map((products) => [...products].sort((firstP, scndP) => firstP.price - scndP.price)));
+                break;
+            case 2:
+                this.products$ = this.productService.updatedProducts$.pipe(
+                    map((products) => [...products].sort((firstP, scndP) => firstP.date - scndP.date))); // need fix
+                break;
+            case 3:
+                // need realisation
+                break;    
+            default:
+                break;
+        }
     }
 
     private fetchProducts(): void {
@@ -52,9 +74,9 @@ export class AppComponent implements OnInit {
     private getSorts(): Sort[] {
         return [
             new Sort(0, "Featured"),
-            new Sort(1, "Brand"),
-            new Sort(2, "Category"),
+            new Sort(1, "Price"),
+            new Sort(2, "Date"),
+            new Sort(3, "Category"),
         ];
     }
 }
-

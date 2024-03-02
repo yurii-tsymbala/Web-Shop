@@ -16,6 +16,7 @@
         <product
             *ngFor="let product of products$ | async"
             [product]="product"
+            (addToCart)="onProductClick($event)"
         ></product>
     </div>
 </div>
