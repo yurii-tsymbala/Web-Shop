@@ -29,10 +29,33 @@ export class ProductService {
 
     addCartItem(product: Product): void {     
         const cartItems = this.storedCartItems;
+        const id = product.id;
+        const existingCartItem = cartItems.find( (cartItem) => cartItem.product.id === id) as CartItem;
+
+        if (existingCartItem) {
+            existingCartItem.counter = existingCartItem.counter + 1;
+            localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+            this.fetchCartItems();
+            return;
+        }
+
         let newItem: CartItem = {product: product, counter: 1};
         cartItems.push(newItem);
         localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
         this.fetchCartItems();
+    }
+
+    decrementCartItem(product: Product): void {
+        const cartItems = this.storedCartItems;
+        const id = product.id;
+        const existingCartItem = cartItems.find( (cartItem) => cartItem.product.id === id) as CartItem;
+
+        if (existingCartItem.counter >= 2) {
+            existingCartItem.counter = existingCartItem.counter - 1;
+            localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+            this.fetchCartItems();
+            return;
+        }
     }
 
     deleteCartItem(cartItem: CartItem): void {

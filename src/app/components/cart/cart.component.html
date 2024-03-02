@@ -11,9 +11,9 @@
 
 <div class="action-container">
     <div class="counter-container">
-        <div class="counter">-</div>
+        <div class="counter" (click)="decrementCartItem()">-</div>
         <div class="counter-number">{{ cartItem.counter }}</div>
-        <div class="counter">+</div>
+        <div class="counter" (click)="incrementCartItem()">+</div>
     </div>
     <button class="remove-btn" (click)="removeCartItem()">REMOVE</button>
 </div>

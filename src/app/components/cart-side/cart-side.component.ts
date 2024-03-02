@@ -24,10 +24,6 @@ export class CartSideComponent implements OnInit {
         this.fetchProducts();
         this.observeProducts();
     }
-
-    onRemoveCart(cartItem: CartItem) {
-        this.productService.deleteCartItem(cartItem);
-    }
    
     onCloseClick(): void {
         this.isHiding = true;
