@@ -8,6 +8,7 @@
     <cart
         *ngFor="let cartItem of cartItems$ | async"
         [cartItem]="cartItem"
+        (removeCart)="onRemoveCart($event)"
     >
   </cart>
 </div>

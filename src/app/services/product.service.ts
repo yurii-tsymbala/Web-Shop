@@ -35,6 +35,14 @@ export class ProductService {
         this.fetchCartItems();
     }
 
+    deleteCartItem(cartItem: CartItem): void {
+        let cartItems = this.storedCartItems;
+        const id = cartItem.product.id;
+        cartItems = cartItems.filter((cartItem) => cartItem.product.id !== id);
+        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+         this.fetchCartItems();
+    }
+
     fetchCartItems(): void {
         const cartItems = this.storedCartItems;
         this.cartProducts.next(cartItems);

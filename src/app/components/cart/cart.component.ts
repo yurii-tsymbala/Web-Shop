@@ -1,4 +1,4 @@
-import { Input } from "@angular/core";
+import { EventEmitter, Input, Output } from "@angular/core";
 import { Component } from "@angular/core";
 import { CartItem } from "../../models/CartItem";
 
@@ -11,6 +11,7 @@ import { CartItem } from "../../models/CartItem";
 })
 export class CartComponent {
     @Input() cartItem!: CartItem;
+    @Output() removeCart = new EventEmitter<CartItem>();
 
     get formattedPrice(): string {
         return `${this.cartItem.product.price}${this.cartItem.product.price_sign} ${this.cartItem.product.currency}`;
@@ -18,5 +19,9 @@ export class CartComponent {
 
     get formattedUrl(): string {
         return `http:${this.cartItem.product.api_featured_image}`;
+    }
+
+    removeCartItem() {
+        this.removeCart.emit(this.cartItem);
     }
 }
