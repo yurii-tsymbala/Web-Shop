@@ -1,4 +1,8 @@
 <div class="background" (click)="onCloseClick()"></div>
 <div class="data-container">
-  <span class="closeIcon" (click)="onCloseClick()">X</span>
+  <div class="data-header">
+    <div class="header-title">YOUR CART (1 items)</div>
+    <img class="header-cancel" src="assets/x_icon.png" (click)="onCloseClick()" />
+  </div>
+  <div class="item-container"></div>
 </div>

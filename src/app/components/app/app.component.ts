@@ -40,8 +40,9 @@ export class AppComponent implements OnInit {
     }
 
     onProductClick(product: Product) {
-        console.log(product);
         this.isCartOpened = true;
+        console.log(product);
+       
     }
 
     onSortClick(sort: Sort): void {
