@@ -11,10 +11,9 @@
 
 <div class="action-container">
     <div class="counter-container">
-        <div>-</div>
-        <div>{{ cartItem.counter }}</div>
-        <div>+</div>
+        <div class="counter">-</div>
+        <div class="counter-number">{{ cartItem.counter }}</div>
+        <div class="counter">+</div>
     </div>
-    <button class="remove-btn" 
-            (click)="removeCartItem()">REMOVE</button>
+    <button class="remove-btn" (click)="removeCartItem()">REMOVE</button>
 </div>

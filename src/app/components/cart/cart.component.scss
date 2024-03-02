@@ -82,3 +82,29 @@
 .desc-price {
     font-size: 10px;
 }
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:active {
+        transform: scale(1.2);
+    }
+}
+
+.counter-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
