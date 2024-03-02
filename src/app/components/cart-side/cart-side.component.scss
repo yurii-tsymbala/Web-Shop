@@ -78,8 +78,10 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
+    height: calc(100vh - 8rem);
     padding: 1rem;
     gap: 0.7rem;
+    overflow: scroll;
 }
 
 .price-container {
@@ -91,7 +93,6 @@
     width: 100%;
     height: 4rem;
     border-top: 0.5px solid black;
-    background-color: red;
 }
 
 @keyframes fade_in {
