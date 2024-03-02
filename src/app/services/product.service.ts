@@ -71,6 +71,10 @@ export class ProductService {
         this.cartProducts.next(cartItems);
     }
 
+    get storedCartItemsLength(): number {
+        return this.storedCartItems.length;
+      }
+
     private get storedCartItems(): CartItem[] {
         return JSON.parse(
             localStorage.getItem(this.PRODUCTS_KEY) || '{"cartItems":[]}'

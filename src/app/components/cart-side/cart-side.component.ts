@@ -1,5 +1,11 @@
-import { Component, EventEmitter, HostBinding, OnInit, Output } from "@angular/core";
-import { Observable } from "rxjs";
+import {
+    Component,
+    EventEmitter,
+    HostBinding,
+    OnInit,
+    Output,
+} from "@angular/core";
+import { Observable, map, reduce } from "rxjs";
 import { ProductService } from "../../services/product.service";
 import { CommonModule } from "@angular/common";
 import { CartComponent } from "../cart/cart.component";
@@ -24,7 +30,17 @@ export class CartSideComponent implements OnInit {
         this.fetchProducts();
         this.observeProducts();
     }
-   
+
+    get cartItemsCount$(): Observable<number> {
+        return this.productService.cartProducts$.pipe(
+            map((cartItems) =>
+                [...cartItems]
+                    .map((cartItem) => cartItem.counter)
+                    .reduce((acc, item) => { return acc += item }, 0)
+            )
+        );
+    }
+
     onCloseClick(): void {
         this.isHiding = true;
         setTimeout(() => {

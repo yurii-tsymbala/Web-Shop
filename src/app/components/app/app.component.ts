@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     products$!: Observable<Product[]>;
     sorts: Sort[] = this.getSorts();
     selectedIndex: number = 0;
-    isCartOpened: boolean = false;
+    isCartOpened: boolean = true;
 
     constructor(private productService: ProductService) { }
 
@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
 
     onProductClick(product: Product) {
         this.isCartOpened = true;
-        console.log(product);
         this.productService.addCartItem(product);
     }
 

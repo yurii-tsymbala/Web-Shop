@@ -1,14 +1,17 @@
 <div class="background" (click)="onCloseClick()"></div>
 <div class="data-container">
-  <div class="data-header">
-    <div class="header-title">YOUR CART (1 items)</div>
-    <img class="header-cancel" src="assets/x_icon.png" (click)="onCloseClick()" />
-  </div>
-  <div class="product-container">
-    <cart
-        *ngFor="let cartItem of cartItems$ | async"
-        [cartItem]="cartItem"
-    >
-  </cart>
-</div>
+    <div class="data-header">
+        <div class="header-title" *ngIf="cartItemsCount$ | async; let cartItems">
+            YOUR CART - {{ cartItems }} items
+        </div>
+        <img
+            class="header-cancel"
+            src="assets/x_icon.png"
+            (click)="onCloseClick()"
+        />
+    </div>
+    <div class="product-container">
+        <cart *ngFor="let cartItem of cartItems$ | async" [cartItem]="cartItem">
+        </cart>
+    </div>
 </div>
