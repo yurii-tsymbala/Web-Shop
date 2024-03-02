@@ -26,7 +26,7 @@ import { ProductService } from "../../services/product.service";
 })
 export class AppComponent implements OnInit {
     products$!: Observable<Product[]>;
-    sorts = this.getSorts();
+    sorts: Sort[] = this.getSorts();
     selectedIndex: number = 0;
 
     constructor(private productService: ProductService) {}
@@ -51,9 +51,10 @@ export class AppComponent implements OnInit {
 
     private getSorts(): Sort[] {
         return [
-            new Sort(0, "Default"),
+            new Sort(0, "Featured"),
             new Sort(1, "Brand"),
             new Sort(2, "Category"),
         ];
     }
 }
+

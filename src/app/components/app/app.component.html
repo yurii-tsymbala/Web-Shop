@@ -1,24 +1,28 @@
 <header></header>
-<div class="main-container">
-
-    <div class="sort-container"
-         *ngIf="((products$ | async)?.length || 0) > 0">
+<div
+    class="main-container"
+    *ngIf="((products$ | async)?.length || 0) > 0; else loading"
+>
+    <div class="sort-container">
         <sort
             *ngFor="let sort of sorts; let i = index"
             [sort]="sort"
             (updateProducts)="onSortClick($event)"
             [ngClass]="{ selected: i === selectedIndex }"
-        ></sort>  
+        ></sort>
     </div>
 
     <div class="product-container">
         <product
-        *ngFor="let product of products$ | async"
-        [product]="product"
+            *ngFor="let product of products$ | async"
+            [product]="product"
         ></product>
     </div>
-
-
-
 </div>
 <footer></footer>
+
+<ng-template #loading>
+    <div class="spinner-container">
+        <div class="spinner"></div>
+    </div>
+</ng-template>

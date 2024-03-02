@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Product } from "../models/Product";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, map, tap } from "rxjs";
 
 @Injectable({
     providedIn: "root",
@@ -15,8 +15,9 @@ export class ProductService {
 
     getProducts(): Observable<Product[]> {
         return this.http.get<Product[]>(this.API_LINK).pipe(
-            tap((value) => {
-                this.products$.next(value);
+            map(array => array.slice(0, 100)),
+            tap((products) => {
+                this.products$.next(products);
             })
         );
     }
