@@ -2,7 +2,8 @@
 <div class="data-container">
     <div class="data-header">
         <div class="header-title" *ngIf="cartItemsCount$ | async; let cartItems">
-            YOUR CART - {{ cartItems }} items
+            <div>YOUR CART</div>
+            <div class="header-subtitle">({{ cartItems }} items)</div>
         </div>
         <img
             class="header-cancel"

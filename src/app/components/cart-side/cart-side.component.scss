@@ -62,8 +62,16 @@
 }
 
 .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
     font-size: 16px;
     font-weight: bolder;
+}
+
+.header-subtitle {
+    font-size: 12px;
 }
 
 .header-cancel {

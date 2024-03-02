@@ -3,11 +3,12 @@ import { ProductService } from "../../services/product.service";
 import { Observable, map } from "rxjs";
 import { CartItem } from "../../models/CartItem";
 import { CommonModule } from "@angular/common";
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
     selector: "header",
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterLink, RouterModule],
     templateUrl: "./header.component.html",
     styleUrl: "./header.component.scss",
 })
