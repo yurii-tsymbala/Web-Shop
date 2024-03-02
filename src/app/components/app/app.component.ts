@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     onProductClick(product: Product) {
         this.isCartOpened = true;
         console.log(product);
-        this.productService.addCartProduct(product);
+        this.productService.addCartItem(product);
     }
 
     onSortClick(sort: Sort): void {

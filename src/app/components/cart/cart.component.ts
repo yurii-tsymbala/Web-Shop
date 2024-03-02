@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component } from '@angular/core';
-import { Product } from '../../models/Product';
+import { CartItem } from '../../models/CartItem';
 
 @Component({
   selector: 'cart',
@@ -10,5 +10,5 @@ import { Product } from '../../models/Product';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  @Input() product!: Product;
+  @Input() cartItem!: CartItem;
 }

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostBinding, OnInit, Output } from "@angular/core";
 import { Observable } from "rxjs";
-import { Product } from "../../models/Product";
 import { ProductService } from "../../services/product.service";
 import { CommonModule } from "@angular/common";
 import { CartComponent } from "../cart/cart.component";
+import { CartItem } from "../../models/CartItem";
 
 @Component({
     selector: "cart-side",
@@ -16,7 +16,7 @@ export class CartSideComponent implements OnInit {
     @Output() closeCartSide = new EventEmitter();
     @HostBinding("class.hiding")
     isHiding: boolean = false;
-    products$!: Observable<Product[]>;
+    cartItems$!: Observable<CartItem[]>;
 
     constructor(private productService: ProductService) {}
 
@@ -33,10 +33,10 @@ export class CartSideComponent implements OnInit {
     }
 
     private fetchProducts(): void {
-        this.productService.fetchCartProducts();
+        this.productService.fetchCartItems();
     }
 
     private observeProducts(): void {
-        this.products$ = this.productService.cartProducts$;
+        this.cartItems$ = this.productService.cartProducts$;
     }
 }

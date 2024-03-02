@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Product } from "../models/Product";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable, map, tap } from "rxjs";
+import { CartItem } from "../models/CartItem";
 
 @Injectable({
     providedIn: "root",
@@ -11,7 +12,7 @@ export class ProductService {
     private readonly API_LINK = "http://makeup-api.herokuapp.com/api/v1/products.json";
     // private readonly API_LINK = "http://localhost:8080/src/assets/products.json";
     private products = new BehaviorSubject<Product[]>([]);
-    private cartProducts = new BehaviorSubject<Product[]>([]);
+    private cartProducts = new BehaviorSubject<CartItem[]>([]);
     readonly products$ = this.products.asObservable();
     readonly cartProducts$ = this.cartProducts.asObservable();
 
@@ -26,21 +27,22 @@ export class ProductService {
         );
     }
 
-    addCartProduct(product: Product): void {     
-        const products = this.storedProducts;
-        products.push(product);
-        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({products}));
-        this.fetchCartProducts();
+    addCartItem(product: Product): void {     
+        const cartItems = this.storedCartItems;
+        let newItem: CartItem = {product: product, counter: 1};
+        cartItems.push(newItem);
+        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+        this.fetchCartItems();
     }
 
-    fetchCartProducts(): void {
-        const products = this.storedProducts;
-        this.cartProducts.next(products);
+    fetchCartItems(): void {
+        const cartItems = this.storedCartItems;
+        this.cartProducts.next(cartItems);
     }
 
-    private get storedProducts(): Product[] {
+    private get storedCartItems(): CartItem[] {
         return JSON.parse(
-            localStorage.getItem(this.PRODUCTS_KEY) || '{"products":[]}'
-        ).products as Product[];
+            localStorage.getItem(this.PRODUCTS_KEY) || '{"cartItems":[]}'
+        ).cartItems as CartItem[];
     }
 }

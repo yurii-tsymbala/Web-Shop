@@ -6,8 +6,8 @@
   </div>
   <div class="product-container">
     <cart
-        *ngFor="let product of products$ | async"
-        [product]="product"
+        *ngFor="let cartItem of cartItems$ | async"
+        [cartItem]="cartItem"
     >
   </cart>
 </div>
