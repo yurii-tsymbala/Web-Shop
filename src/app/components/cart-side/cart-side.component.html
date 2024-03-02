@@ -10,7 +10,7 @@
             (click)="onCloseClick()"
         />
     </div>
-    <div class="product-container">
+    <div class="product-container" *ngIf="((cartItems$ | async)?.length || 0) > 0; else emptyProducts">
         <cart *ngFor="let cartItem of cartItems$ | async" [cartItem]="cartItem">
         </cart>
     </div>
@@ -20,3 +20,10 @@
         <div class="header-title" *ngIf="cartItemsSubtotal$ | async; let subtotal">{{subtotal}}$</div>
     </div>
 </div>
+
+<ng-template #emptyProducts>
+    <div class="empty-container">
+        <div class="empty-text">No items in the kart -_-</div>
+        <div class="empty-text">Let's go shopping!</div>
+    </div>
+</ng-template>
