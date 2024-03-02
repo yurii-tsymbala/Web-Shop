@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable, map, tap } from "rxjs";
 })
 export class ProductService {
     private readonly API_LINK = "http://makeup-api.herokuapp.com/api/v1/products.json";
+    // private readonly API_LINK = "http://localhost:8080/src/assets/products.json";
     private products$ = new BehaviorSubject<Product[]>([]);
     readonly updatedProducts$ = this.products$.asObservable();
 

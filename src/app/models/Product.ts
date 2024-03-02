@@ -1,17 +1,11 @@
-export class Product {
-    constructor(
-        public id: number,
-        public brand: string,
-        public name: string,
-        public api_featured_image: string,
-        public price: number,
-        public price_sign: string,
-        public currency: string,
-        public created_at: string
-    ) {}
-
-    get date(): number {
-        const date = new Date(this.created_at);
-        return Math.floor(date.getTime() / 1000);
-    }
+export interface Product {
+    id: number;
+    brand: string;
+    name: string;
+    api_featured_image: string;
+    price: number;
+    price_sign: string;
+    currency: string;
+    created_at: string;
+    category: string;
 }

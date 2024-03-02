@@ -17,13 +17,16 @@
             *ngFor="let product of products$ | async"
             [product]="product"
             (addToCart)="onProductClick($event)"
-        ></product>
+        >
+        </product>
     </div>
+    <footer></footer>
 </div>
-<footer></footer>
 
 <ng-template #loading>
     <div class="spinner-container">
         <div class="spinner"></div>
     </div>
 </ng-template>
+
+<cart-side *ngIf="isCartOpened" (closeCartSide)="onCartClose()"></cart-side>
