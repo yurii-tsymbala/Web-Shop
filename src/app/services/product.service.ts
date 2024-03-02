@@ -8,7 +8,7 @@ import { CartItem } from "../models/CartItem";
     providedIn: "root",
 })
 export class ProductService {
-    private readonly PRODUCTS_KEY = "products";
+    private readonly PRODUCTS_KEY = "cartItems";
     private readonly API_LINK = "http://makeup-api.herokuapp.com/api/v1/products.json";
     // private readonly API_LINK = "http://localhost:8080/src/assets/products.json";
     private products = new BehaviorSubject<Product[]>([]);
@@ -27,32 +27,37 @@ export class ProductService {
         );
     }
 
-    addCartItem(product: Product): void {     
+    fetchCartItems(): void {
+        const cartItems = this.storedCartItems;
+        this.cartProducts.next(cartItems);
+    }
+
+    addCartItem(product: Product): void {
         const cartItems = this.storedCartItems;
         const id = product.id;
-        const existingCartItem = cartItems.find( (cartItem) => cartItem.product.id === id) as CartItem;
+        const existingCartItem = cartItems.find((cartItem) => cartItem.product.id === id) as CartItem;
 
         if (existingCartItem) {
             existingCartItem.counter = existingCartItem.counter + 1;
-            localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+            localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({ cartItems }));
             this.fetchCartItems();
             return;
         }
 
-        let newItem: CartItem = {product: product, counter: 1};
+        let newItem: CartItem = { product: product, counter: 1 };
         cartItems.push(newItem);
-        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({ cartItems }));
         this.fetchCartItems();
     }
 
     decrementCartItem(product: Product): void {
         const cartItems = this.storedCartItems;
         const id = product.id;
-        const existingCartItem = cartItems.find( (cartItem) => cartItem.product.id === id) as CartItem;
+        const existingCartItem = cartItems.find((cartItem) => cartItem.product.id === id) as CartItem;
 
         if (existingCartItem.counter >= 2) {
             existingCartItem.counter = existingCartItem.counter - 1;
-            localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
+            localStorage.setItem( this.PRODUCTS_KEY, JSON.stringify({ cartItems }));
             this.fetchCartItems();
             return;
         }
@@ -62,22 +67,48 @@ export class ProductService {
         let cartItems = this.storedCartItems;
         const id = cartItem.product.id;
         cartItems = cartItems.filter((cartItem) => cartItem.product.id !== id);
-        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({cartItems}));
-         this.fetchCartItems();
+        localStorage.setItem(this.PRODUCTS_KEY, JSON.stringify({ cartItems }));
+        this.fetchCartItems();
     }
 
-    fetchCartItems(): void {
-        const cartItems = this.storedCartItems;
-        this.cartProducts.next(cartItems);
+    get sortedByFeatured$(): Observable<Product[]> {
+        return this.products$;
     }
 
-    get storedCartItemsLength(): number {
-        return this.storedCartItems.length;
-      }
+
+    get sortedByPrice$(): Observable<Product[]> {
+        return this.products$.pipe(
+            map((products) => [...products].sort((a, b) => a.price - b.price))
+        );
+    }
+
+    get sortedByDate$(): Observable<Product[]> {
+        return this.products$.pipe(
+            map((products) => {
+                return [...products].sort(
+                    (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+            })
+        );
+    }
+
+    get sortedByCategory$(): Observable<Product[]> {
+        return this.products$.pipe(
+            map((products) => {
+                return [...products].sort((a, b) => {
+                    if (a.category < b.category) {
+                        return -1;
+                    }
+                    if (a.category > b.category) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            })
+        );
+    }
 
     private get storedCartItems(): CartItem[] {
-        return JSON.parse(
-            localStorage.getItem(this.PRODUCTS_KEY) || '{"cartItems":[]}'
-        ).cartItems as CartItem[];
+        return JSON.parse(localStorage.getItem(this.PRODUCTS_KEY) || '{"cartItems":[]}')
+        .cartItems as CartItem[];
     }
 }

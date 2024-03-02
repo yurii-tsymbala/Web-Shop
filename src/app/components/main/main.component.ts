@@ -5,7 +5,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
 import { ProductComponent } from "../product/product.component";
 import { SortComponent } from "../sort/sort.component";
-import { Observable, map, take } from "rxjs";
+import { Observable, take } from "rxjs";
 import { Product } from "../../models/Product";
 import { Sort } from "../../models/Sort";
 import { ProductService } from "../../services/product.service";
@@ -40,27 +40,16 @@ export class MainComponent {
 
       switch (sort.id) {
           case 0:
-              this.products$ = this.productService.products$;
+              this.products$ = this.productService.sortedByFeatured$;
               break;
           case 1:
-              this.products$ = this.productService.products$.pipe(
-                  map((products) => [...products].sort((a, b) => a.price - b.price)));
+              this.products$ = this.productService.sortedByPrice$;
               break;
           case 2:
-              this.products$ = this.productService.products$.pipe(
-                  map((products) => {
-                      return [...products].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
-                  }));
+              this.products$ = this.productService.sortedByDate$;
               break;
           case 3:
-              this.products$ = this.productService.products$.pipe(
-                  map((products) => {
-                      return [...products].sort((a, b) => {
-                          if (a.category < b.category) { return -1 }
-                          if (a.category > b.category) { return 1 }
-                          return 0;
-                      })
-                  }));
+              this.products$ = this.productService.sortedByCategory$;
               break;
           default:
               break;
