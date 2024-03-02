@@ -107,6 +107,16 @@ export class ProductService {
         );
     }
 
+    get cartItemsLength$(): Observable<number> {
+        return this.cartProducts$.pipe(
+            map((cartItems) =>
+                [...cartItems]
+                    .map((cartItem) => cartItem.counter)
+                    .reduce((acc, item) => { return acc += item }, 0)
+            )
+        );
+    }
+
     private get storedCartItems(): CartItem[] {
         return JSON.parse(localStorage.getItem(this.PRODUCTS_KEY) || '{"cartItems":[]}')
         .cartItems as CartItem[];

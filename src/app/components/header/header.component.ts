@@ -22,13 +22,7 @@ export class HeaderComponent implements OnInit {
     }
 
     get cartItemsCount$(): Observable<number> {
-        return this.productService.cartProducts$.pipe(
-            map((cartItems) =>
-                [...cartItems]
-                    .map((cartItem) => cartItem.counter)
-                    .reduce((acc, item) => { return acc += item }, 0)
-            )
-        );
+       return this.productService.cartItemsLength$;
     }
 
     private observeData(): void {
