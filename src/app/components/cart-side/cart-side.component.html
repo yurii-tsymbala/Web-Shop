@@ -4,5 +4,11 @@
     <div class="header-title">YOUR CART (1 items)</div>
     <img class="header-cancel" src="assets/x_icon.png" (click)="onCloseClick()" />
   </div>
-  <div class="item-container"></div>
+  <div class="product-container">
+    <cart
+        *ngFor="let product of products$ | async"
+        [product]="product"
+    >
+  </cart>
+</div>
 </div>

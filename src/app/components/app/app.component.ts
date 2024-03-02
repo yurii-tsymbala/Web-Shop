@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     onProductClick(product: Product) {
         this.isCartOpened = true;
         console.log(product);
-       
+        this.productService.addCartProduct(product);
     }
 
     onSortClick(sort: Sort): void {
@@ -50,20 +50,20 @@ export class AppComponent implements OnInit {
 
         switch (sort.id) {
             case 0:
-                this.products$ = this.productService.updatedProducts$;
+                this.products$ = this.productService.products$;
                 break;
             case 1:
-                this.products$ = this.productService.updatedProducts$.pipe(
+                this.products$ = this.productService.products$.pipe(
                     map((products) => [...products].sort((a, b) => a.price - b.price)));
                 break;
             case 2:
-                this.products$ = this.productService.updatedProducts$.pipe(
+                this.products$ = this.productService.products$.pipe(
                     map((products) => {
                         return [...products].sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
                     }));
                 break;
             case 3:
-                this.products$ = this.productService.updatedProducts$.pipe(
+                this.products$ = this.productService.products$.pipe(
                     map((products) => {
                         return [...products].sort((a, b) => {
                             if (a.category < b.category) { return -1 }
@@ -82,11 +82,11 @@ export class AppComponent implements OnInit {
     }
 
     private fetchProducts(): void {
-        this.productService.getProducts().pipe(take(1)).subscribe();
+        this.productService.fetchProducts().pipe(take(1)).subscribe();
     }
 
     private observeProducts(): void {
-        this.products$ = this.productService.updatedProducts$;
+        this.products$ = this.productService.products$;
     }
 
     private getSorts(): Sort[] {

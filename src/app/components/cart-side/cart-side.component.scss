@@ -72,6 +72,16 @@
     cursor: pointer;
 }
 
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 1rem;
+    gap: 0.7rem;
+}
+
 @keyframes fade_in {
     0% {
         opacity: 0;
