@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostBinding, OnInit, Output } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable } from "rxjs";
 import { ProductService } from "../../services/product.service";
 import { CommonModule } from "@angular/common";
 import { CartComponent } from "../cart/cart.component";
