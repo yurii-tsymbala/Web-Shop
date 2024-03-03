@@ -1,9 +1,13 @@
 <button class="main-btn" routerLink="/home">
-    <img class="main-icon" src="assets/home_icon.png">
-</button> 
-<div *ngIf="cartItemsCount$ | async; let cartItems">
-    YOUR CART - {{ cartItems }} items
+    <img class="main-icon" src="assets/home_icon.png" />
+</button>
+<div class="shop-container">
+    <img class="shop-img" src="assets/cosmetic_icon.png">
+    <div class="shop-title">COSMETICS STORE</div>
 </div>
 <button class="main-btn" routerLink="/shopcart">
-    <img class="main-icon" src="assets/cart_icon.png">
+    <img class="main-icon" src="assets/cart_icon.png" />
+    <div class="counterItem" *ngIf="cartItemsCount$ | async; let cartItems">
+        {{ cartItems }}
+    </div>
 </button>
