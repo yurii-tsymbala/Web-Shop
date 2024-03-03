@@ -8,4 +8,5 @@ export interface Product {
     currency: string;
     created_at: string;
     category: string;
+    description: string;
 }
