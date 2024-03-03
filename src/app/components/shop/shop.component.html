@@ -1,0 +1,19 @@
+<div class="info-container">
+    <img class="info-img" src="{{ formattedUrl }}" />
+    <div class="desc-container">
+        <div class="desc-info">{{ cartItem.product.name }}</div>
+        <div class="desc-subinfo">
+            {{ cartItem.product.brand.toUpperCase() }}
+        </div>
+        <div class="desc-price">{{ formattedPrice.toUpperCase() }}</div>
+    </div>
+</div>
+
+<div class="action-container">
+    <div class="counter-container">
+        <div class="counter" (click)="decrementCartItem()">-</div>
+        <div class="counter-number">{{ cartItem.counter }}</div>
+        <div class="counter" (click)="incrementCartItem()">+</div>
+    </div>
+    <button class="remove-btn" (click)="removeCartItem()">REMOVE</button>
+</div>

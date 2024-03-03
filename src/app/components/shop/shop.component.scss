@@ -1,3 +1,111 @@
 :host {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 16rem;
+    height: 8rem;
+    border: 0.5px solid black;
+    background-color: white;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 6rem;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+}
+
+.desc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 1rem;
+    gap: 0.2rem;
+}
+
+.action-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 2rem;
+    border-top: 0.5px solid black;
+}
+
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 100%;
+    border-right: 0.5px solid black;
+}
+
+.remove-btn {
+   width: 50%;
+   height: 100%;
+   border: none;
+   background-color: white;
+   cursor: pointer;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+
+    &:active {
+        background-color: gray;
+    }
+}
+
+.info-img {
+    width: 4.5rem;
+    height: 4.5rem;
+}
+
+.desc-info {
+    font-size: 10px;
+    font-weight: bold;
+    color: gray;
+}
+
+.desc-subinfo {
+    font-size: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.desc-price {
+    font-size: 10px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:active {
+        transform: scale(1.2);
+    }
+}
+
+.counter-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

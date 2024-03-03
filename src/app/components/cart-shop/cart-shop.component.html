@@ -1,10 +1,37 @@
 <div class="main-container">
     <div class="info-container">
-
+        <div
+        class="header-title"
+        *ngIf="cartItemsCount$ | async; let cartItems"
+    >
+        <div>YOUR CART</div>
+        <div class="header-subtitle">({{ cartItems }} items)</div>
     </div>
 
-    <div class="shop-container">
-        
+    <div
+    class="header-title"
+    *ngIf="cartItemsSubtotal$ | async; let subtotal"
+>
+    <div>SUBTOTAL</div>
+    <div class="header-subtitle">{{ subtotal }}$</div>
+</div>
+    </div>
+
+    <div
+        class="shop-container"
+        *ngIf="((cartItems$ | async)?.length || 0) > 0; else emptyProducts"
+    >
+        <shop
+            *ngFor="let cartItem of cartItems$ | async"
+            [cartItem]="cartItem"
+        />
     </div>
     <footer></footer>
 </div>
+
+<ng-template #emptyProducts>
+    <div class="empty-container">
+        <div class="empty-text">No items in the kart -_-</div>
+        <div class="empty-text">Let's go shopping!</div>
+    </div>
+</ng-template>

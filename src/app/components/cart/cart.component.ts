@@ -1,5 +1,4 @@
-import { EventEmitter, Input, Output } from "@angular/core";
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { CartItem } from "../../models/CartItem";
 import { ProductService } from "../../services/product.service";
 
