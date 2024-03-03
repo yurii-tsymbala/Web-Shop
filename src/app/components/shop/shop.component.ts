@@ -1,11 +1,12 @@
 import { Component, Input } from "@angular/core";
 import { CartItem } from "../../models/CartItem";
 import { ProductService } from "../../services/product.service";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "shop",
     standalone: true,
-    imports: [],
+    imports: [CommonModule],
     templateUrl: "./shop.component.html",
     styleUrl: "./shop.component.scss",
 })

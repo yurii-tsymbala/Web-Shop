@@ -30,7 +30,7 @@
             class="header-title"
             *ngIf="cartItemsSubtotal$ | async; let subtotal"
         >
-            {{ subtotal }}$
+            {{ subtotal.toFixed(1) }}$
         </div>
     </div>
 </div>

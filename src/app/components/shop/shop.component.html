@@ -1,17 +1,22 @@
 <div class="info-container">
-    <img class="info-img" src="{{ formattedUrl }}" />
+    <div class="info-img" [ngStyle]="{
+        'background-image': 'url(' + formattedUrl + ')'
+    }"></div>
     <div class="desc-container">
-        <div class="desc-info">{{ cartItem.product.name }}</div>
-        <div class="desc-subinfo">
-            {{ cartItem.product.brand.toUpperCase() }}
+        <div class="title">
+            <div class="desc-info">{{ cartItem.product.name }}</div>
+            <div class="desc-subinfo">
+                {{ cartItem.product.brand.toUpperCase() }}
+            </div>
+            <div class="desc-price">{{ formattedPrice.toUpperCase() }}</div>
         </div>
-        <div class="desc-price">{{ formattedPrice.toUpperCase() }}</div>
+        <div class="data-container">
+            {{formattedDesc}}
+        </div>
     </div>
 </div>
 
-<div class="data-container">
-    {{formattedDesc}}
-</div>
+
 
 <div class="action-container">
     <div class="counter-container">

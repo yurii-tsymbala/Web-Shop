@@ -10,7 +10,6 @@ import { CartItem } from "../models/CartItem";
 export class ProductService {
     private readonly PRODUCTS_KEY = "cartItems";
     private readonly API_LINK = "http://makeup-api.herokuapp.com/api/v1/products.json";
-    // private readonly API_LINK = "http://localhost:8080/src/assets/products.json";
     private products = new BehaviorSubject<Product[]>([]);
     private cartProducts = new BehaviorSubject<CartItem[]>([]);
     readonly products$ = this.products.asObservable();

@@ -9,9 +9,10 @@
     padding-left: 4rem;
     padding-right: 4rem;
     color: white;
-    background-color: rgb(152, 135, 179);
+    background-color: rgb(112 96 139 / 69%);
     border-bottom: 1px solid #00000038;
     z-index: 1;
+    backdrop-filter: blur(10px) brightness(1);
 }
 
 .main-btn {
@@ -24,7 +25,7 @@
     padding: 0;
     cursor: pointer;
     border: none;
-    background-color: rgb(152, 135, 179);
+    background: transparent;
 
     &:hover {
         opacity: 0.7;
@@ -39,13 +40,12 @@
     font-size: 2rem;
     width: 2rem;
     height: 2rem;
-    background-color: rgb(152, 135, 179);
 }
 
 .counterItem {
     position: absolute;
     top: -0.4rem;
-    right: -1.2rem;
+    left: 2.2rem;
     font-size: 15px;
     font-weight: bold;
 }
@@ -61,11 +61,16 @@
     font-size: 30px;
     font-style: italic;
     font-weight: bolder;
-    color: rgb(232, 218, 255);
+    color: white;
+    text-shadow:
+        3px 3px 0 #0000005b,
+        -1px -1px 0 #0000006e,
+        1px -1px 0 #00000069,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
 }
 
 .shop-img {
     width: 2rem;
     height: 2rem;
-    background-color: rgb(152, 135, 179);
 }

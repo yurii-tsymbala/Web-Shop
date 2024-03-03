@@ -21,7 +21,7 @@ export class MainComponent {
   products$!: Observable<Product[]>;
   sorts: Sort[] = this.getSorts();
   selectedIndex: number = 0;
-  isCartOpened: boolean = true;
+  isCartOpened: boolean = false;
 
   constructor(private productService: ProductService) { }
 
