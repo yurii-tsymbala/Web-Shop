@@ -1,11 +1,5 @@
-import {
-    Component,
-    EventEmitter,
-    HostBinding,
-    OnInit,
-    Output,
-} from "@angular/core";
-import { Observable, map, reduce } from "rxjs";
+import { Component, EventEmitter, HostBinding, OnInit, Output } from "@angular/core";
+import { Observable, map } from "rxjs";
 import { ProductService } from "../../services/product.service";
 import { CommonModule } from "@angular/common";
 import { CartComponent } from "../cart/cart.component";
@@ -27,28 +21,8 @@ export class CartSideComponent implements OnInit {
     constructor(private productService: ProductService) {}
 
     ngOnInit(): void {
-        this.fetchProducts();
-        this.observeProducts();
-    }
-
-    get cartItemsCount$(): Observable<number> {
-        return this.productService.cartProducts$.pipe(
-            map((cartItems) =>
-                [...cartItems]
-                    .map((cartItem) => cartItem.counter)
-                    .reduce((acc, item) => { return acc += item }, 0)
-            )
-        );
-    }
-
-    get cartItemsSubtotal$(): Observable<number> {
-        return this.productService.cartProducts$.pipe(
-            map((cartItems) =>
-                [...cartItems]
-                    .map((cartItem) => cartItem.product.price * cartItem.counter)
-                    .reduce((acc, item) => { return acc += item }, 0)
-            )
-        );
+        this.fetchCartItems();
+        this.observeCartItems();
     }
 
     onCloseClick(): void {
@@ -58,11 +32,19 @@ export class CartSideComponent implements OnInit {
         }, 200);
     }
 
-    private fetchProducts(): void {
+    get cartItemsCount$(): Observable<number> {
+        return this.productService.cartItemsLength$;
+     }
+
+    get cartItemsSubtotal$(): Observable<number> {
+        return this.productService.cartItemsTotalPrice$;
+    }
+
+    private fetchCartItems(): void {
         this.productService.fetchCartItems();
     }
 
-    private observeProducts(): void {
+    private observeCartItems(): void {
         this.cartItems$ = this.productService.cartProducts$;
     }
 }
